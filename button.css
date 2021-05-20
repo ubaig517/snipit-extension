@@ -1,0 +1,17 @@
+body {
+  background-color: #fefefe;
+}
+
+#content{
+  background-color: #fefefe;
+  align-content: center;
+  height: 400px;
+  width: 350px;
+  margin: 5px 10px;
+}
+
+#snipit-list {
+  background-color: #fefefe;
+  padding: 0;
+  list-style: none;
+}
