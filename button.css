@@ -11,6 +11,10 @@ body {
   color: #ffffff !important;
 }
 
+img {
+  margin-right: 5px;
+}
+
 #pop-title {
   color: #ffffff !important;
 }
