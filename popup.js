@@ -18,11 +18,8 @@ changeColor.addEventListener("click", async () => {
 });
 
 function getcurrentPageBody() {
-  const selection = window.getSelection();
+  const selection = window.getSelection().toString();
   const href = location.href;
-  const data = selection.focusNode.data;
-  const quote = document.createElement('p');
-  quote.innerText = data;
   console.log('button pressed')
   // use date object to create timestamp and store to new variable
   const newDate = new Date().toDateString();
@@ -32,7 +29,7 @@ function getcurrentPageBody() {
     created_at: newDate,
     title: 'Note',
     href: href,
-    snippet: data,
+    snippet: selection,
     author: 'Umair'
   }
   // clear text field

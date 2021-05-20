@@ -6,10 +6,19 @@ body {
   background-color: #fefefe;
 }
 
+#nav {
+  background-color: #6D76E7;
+  color: #ffffff !important;
+}
+
+#pop-title {
+  color: #ffffff !important;
+}
+
 #content{
   background-color: #fefefe;
   align-content: center;
-  height: 400px;
+  height: 450px;
   width: 350px;
   margin: 5px 10px;
 }
