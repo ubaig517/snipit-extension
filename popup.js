@@ -19,7 +19,8 @@ changeColor.addEventListener("click", async () => {
 
 function getcurrentPageBody() {
   const selection = window.getSelection();
-  const data = selection.anchorNode.data;
+  const href = location.href;
+  const data = selection.focusNode.data;
   const quote = document.createElement('p');
   quote.innerText = data;
   console.log('button pressed')
@@ -27,13 +28,16 @@ function getcurrentPageBody() {
   const newDate = new Date().toDateString();
   // create object with properties of created_at, created_by, message
   const postData = {
-    message: data,
+    id: 'Undefined',
     created_at: newDate,
-    created_by: 'SnipIt Extension'
+    title: 'Note',
+    href: href,
+    snippet: data,
+    author: 'Umair'
   }
   // clear text field
 
-  fetch('https://curriculum-api.codesmith.io/messages', {
+  fetch('https://fast-coast-50256.herokuapp.com/https://snipit-api.herokuapp.com/snippets', {
     method: 'POST',
     body: JSON.stringify(postData),
     headers: {
@@ -66,34 +70,45 @@ function getcurrentPageBody() {
   //append list to message
   //append message to contentContainer
 (function getSnipits() {
-  fetch('https://curriculum-api.codesmith.io/messages') // replace uri
+  fetch('https://fast-coast-50256.herokuapp.com/https://snipit-api.herokuapp.com/snippets') // replace uri
     .then(data => data.json())
     .then(data => {
-      // console.log(data)
+      console.log(data);
       // iterate over data in reverse
       // for each item in data
-      for (let i = 5; i >= 0; i--) {
+      for (let i = 0; i < 10; i++) {
         // create a new li each iteration of the loop
         const listItem = document.createElement('li');
-        const userName = document.createElement('h5');
-        const message = document.createElement('p');
-
+        const noteTitle = document.createElement('h5');
+        const metaEl = document.createElement('p');
+        const hrefP = document.createElement('p');
+        const hrefEl = document.createElement('a');
+        const snippetEl = document.createElement('p');
+        const {  href, snippet } = data[i];
 
         listItem.classList.add('has-background-link-light');
         listItem.classList.add('card');
-        listItem.classList.add('my-3');
+        listItem.classList.add('my-4');
         listItem.classList.add('p-4');
 
-        userName.classList.add('is-size-6');
-        userName.classList.add('has-text-weight-bold');
+        noteTitle.classList.add('is-size-6');
+        noteTitle.classList.add('has-text-weight-bold');
 
-        message.classList.add('is-size-6');
+        snippetEl.classList.add('is-size-6');
 
-        userName.innerText = data[i].created_by;
-        message.innerText = data[i].message;
+        noteTitle.innerText = 'Note';
+        // metaEl.innerText = `${author}`;
+        hrefEl.href = href;
+        hrefEl.target = '_blank';
+        hrefEl.innerText = `Page link`;
+        snippetEl.innerText = snippet;
+
+        hrefP.appendChild(hrefEl);
         
-        listItem.appendChild(userName);
-        listItem.appendChild(message);
+        listItem.appendChild(noteTitle);
+        // listItem.appendChild(metaEl);
+        listItem.appendChild(hrefP);
+        listItem.appendChild(snippetEl);
         // console.log(userName, message);
         snipitList.appendChild(listItem);
       }
