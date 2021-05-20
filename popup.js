@@ -78,6 +78,8 @@ function getcurrentPageBody() {
         const userName = document.createElement('h5');
         const message = document.createElement('p');
 
+
+        listItem.classList.add('has-background-link-light');
         listItem.classList.add('card');
         listItem.classList.add('my-3');
         listItem.classList.add('p-4');
